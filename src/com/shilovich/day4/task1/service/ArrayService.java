@@ -6,7 +6,7 @@ public class ArrayService {
 
     public CustomArray sortBubble(CustomArray array) {
         int size = array.length();
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
                 if (numberArray[j + 1] < numberArray[j]) {
@@ -21,7 +21,7 @@ public class ArrayService {
 
     public CustomArray sortBubbleReverse(CustomArray array) {
         int size = array.length();
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
                 if (numberArray[j + 1] > numberArray[j]) {
@@ -36,7 +36,7 @@ public class ArrayService {
 
     public CustomArray sortSelection(CustomArray array) {
         int size = array.length();
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         for (int i = 0; i < size - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < size; j++) {
@@ -54,7 +54,7 @@ public class ArrayService {
 
     public CustomArray sortSelectionReverse(CustomArray array) {
         int size = array.length();
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         for (int i = 0; i < size - 1; i++) {
             int maxIndex = i;
             for (int j = i + 1; j < size; j++) {
@@ -72,7 +72,7 @@ public class ArrayService {
 
     public CustomArray sortInsertion(CustomArray array) {
         int size = array.length();
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         for (int i = 1; i < size; i++) {
             int key = numberArray[i];
             int j = i - 1;
@@ -87,7 +87,7 @@ public class ArrayService {
 
     public CustomArray sortInsertionReverse(CustomArray array) {
         int size = array.length();
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         for (int i = 1; i < size; i++) {
             int key = numberArray[i];
             int j = i - 1;
@@ -116,7 +116,7 @@ public class ArrayService {
 
     public int minElement(CustomArray array) {
         int size = array.length();
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         int minElement = numberArray[0];
         for (int i = 1; i < size; i++) {
             if (numberArray[i] < minElement) {
@@ -128,7 +128,7 @@ public class ArrayService {
 
     public int maxElement(CustomArray array) {
         int size = array.length();
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         int maxElement = numberArray[0];
         for (int i = 1; i < size; i++) {
             if (numberArray[i] > maxElement) {
@@ -139,44 +139,31 @@ public class ArrayService {
     }
 
     public int[] findPrimeNumber(CustomArray array) {
-        int[] numberArray = array.getNumberArray();
+        int[] numberArray = getNumberArray(array);
         int size = array.length();
-        int count = 0;
+        int[] result = new int[size];
         for (int i = 0; i < size; i++) {
+            boolean flag = true;
             int value = numberArray[i];
-            if (value > 1) {
-                int j = 2;
-                while (value > j) {
-                    if (value % j == 0) {
-                        count++;
-                        break;
-                    }
-                    j++;
+            int j = 1;
+            while (value / 2 > j++) {
+                if (value % j == 0) {
+                    flag = false;
+                    break;
                 }
             }
-        }
-        int length = size - count;
-        if (length == 0) {
-            return new int[0];
-        }
-        count = 0;
-        int[] result = new int[length];
-        for (int i = 0; i < size; i++) {
-            int value = numberArray[i];
-            if (value == 1) {
-                result[count] = value;
-                count++;
-            } else if (value > 1) {
-                int j = 2;
-                while (value > j) {
-                    if (value % j == 0) {
-                        break;
-                    }
-                    j++;
-                }
-            } else if (true) {
-                result[i] = value;
+            if (flag) {
+                result[i] = numberArray[i];
             }
+        }
+
+        return result;
+    }
+
+    private int[] getNumberArray(CustomArray array) {
+        int[] result = new int[array.length()];
+        for (int i = 0; i < array.length(); i++) {
+            result[i] = array.get(i);
         }
         return result;
     }
