@@ -1,16 +1,17 @@
 package com.shilovich.day4.task1.entity;
 
-public class Array {
+public class CustomArray {
     private int[] numberArray;
 
-    public Array() {
+    // FIXME: 22.06.2020
+    public CustomArray() {
     }
 
-    public Array(int[] array) {
+    public CustomArray(int[] array) {
         this.numberArray = array;
     }
 
-    public Array(int size) {
+    public CustomArray(int size) {
         this.numberArray = new int[size];
     }
 
@@ -31,6 +32,14 @@ public class Array {
         return result;
     }
 
+    public int[] getNumberArray() {
+        return numberArray;
+    }
+
+    public void setNumberArray(int[] numberArray) {
+        this.numberArray = numberArray;
+    }
+
     public int length() {
         return numberArray.length;
     }
@@ -44,7 +53,7 @@ public class Array {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Array array1 = (Array) o;
+        CustomArray array1 = (CustomArray) o;
 
         if (numberArray == array1.numberArray)
             return true;
@@ -75,7 +84,7 @@ public class Array {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Array{");
+        final StringBuilder sb = new StringBuilder("CustomArray{");
         sb.append("numberArray=");
 
         if (numberArray == null)
