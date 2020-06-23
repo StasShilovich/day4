@@ -4,6 +4,8 @@ import com.shilovich.day4_1.entity.CustomArray;
 
 public class CustomArraySearchService {
 
+    private static final int FIBONACCI_MAX_ELEMENT_IN_INT = 46;
+
     public int binarySearch(CustomArray array, int value, int lowIndex, int highIndex) {
         int middle = lowIndex + (highIndex - lowIndex) / 2;
         if (highIndex < lowIndex) {
@@ -67,15 +69,43 @@ public class CustomArraySearchService {
     }
 
     public CustomArray findFibonacciNumbers(CustomArray array) {
-        int maxElement = maxElement(array);
-        int a=0;
-        int b=1;
-        int fibonacci=a+b;
-        int count=2;
-        while (fibonacci<maxElement){
-            fibonacci+=
+        int size = array.length();
+        CustomArray numbers = new CustomArray(size);
+        int index = 0;
+        for (int i = 0; i < size; i++) {
+            int value = array.get(i);
+            if (isFibonacci(value)) {
+                numbers.set(index, array.get(i));
+                index++;
+            }
         }
+        CustomArray result = new CustomArray(index);
+        for (int i = 0; i < index; i++) {
+            result.set(i, numbers.get(i));
+        }
+        return result;
+    }
 
-
+    private boolean isFibonacci(int value) {
+        int fibonacciPrevious = 0;
+        int fibonacciCurrent = 1;
+        if (value == fibonacciPrevious) {
+            return true;
+        }
+        if (value == fibonacciCurrent) {
+            return true;
+        }
+        int fibonacciNext = fibonacciPrevious + fibonacciCurrent;
+        int count = 0;
+        int sum;
+        while (value >= fibonacciNext && count <= FIBONACCI_MAX_ELEMENT_IN_INT) {
+            if (value == fibonacciNext) {
+                return true;
+            }
+            sum = fibonacciCurrent;
+            fibonacciCurrent = fibonacciNext;
+            fibonacciNext += sum;
+        }
+        return false;
     }
 }
