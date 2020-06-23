@@ -1,4 +1,4 @@
-package com.shilovich.day4.task1.entity;
+package com.shilovich.day4_1.entity;
 
 public class CustomArray {
     private int[] numberArray;
