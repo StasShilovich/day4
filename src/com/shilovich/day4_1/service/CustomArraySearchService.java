@@ -5,6 +5,10 @@ import com.shilovich.day4_1.entity.CustomArray;
 public class CustomArraySearchService {
 
     private static final int FIBONACCI_MAX_ELEMENT_IN_INT = 46;
+    private static final int THREE_DIGIT_NUMBER_MIN = 100;
+    private static final int THREE_DIGIT_NUMBER_MAX = 999;
+    private static final int TEN = 10;
+    private static final int ONE_HUNDRED = 100;
 
     public int binarySearch(CustomArray array, int value, int lowIndex, int highIndex) {
         int middle = lowIndex + (highIndex - lowIndex) / 2;
@@ -86,6 +90,36 @@ public class CustomArraySearchService {
         return result;
     }
 
+    public CustomArray findNumbersWithUniqueDigits(CustomArray array) {
+        int size = array.length();
+        CustomArray numbers = new CustomArray(size);
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            if (isThreeDigitNumber(array.get(i))) {
+                int units = array.get(i) % TEN;
+                int dozens = (array.get(i) / TEN) % TEN;
+                int hundreds = (array.get(i) / ONE_HUNDRED) % TEN;
+                if (units != dozens && dozens != hundreds && units != hundreds) {
+                    numbers.set(count, array.get(i));
+                    count++;
+                }
+            }
+        }
+        CustomArray result = new CustomArray(count);
+        for (int i = 0; i < count; i++) {
+            result.set(i, numbers.get(i));
+        }
+        return result;
+    }
+
+    private boolean isThreeDigitNumber(int number) {
+        boolean result = false;
+        if (number >= THREE_DIGIT_NUMBER_MIN && number <= THREE_DIGIT_NUMBER_MAX) {
+            result = true;
+        }
+        return result;
+    }
+
     private boolean isFibonacci(int value) {
         int fibonacciPrevious = 0;
         int fibonacciCurrent = 1;
@@ -105,6 +139,7 @@ public class CustomArraySearchService {
             sum = fibonacciCurrent;
             fibonacciCurrent = fibonacciNext;
             fibonacciNext += sum;
+            count++;
         }
         return false;
     }
