@@ -4,6 +4,7 @@ public class CustomArray {
     private int[] numberArray;
 
     public CustomArray() {
+        this.numberArray = new int[0];
     }
 
     public CustomArray(int[] array) {
@@ -86,7 +87,7 @@ public class CustomArray {
         }
         int iMax = length() - 1;
         if (iMax == -1) {
-            return "[]";
+            return "CustomArray{[]}";
         }
         sb.append('[');
         for (int i = 0; ; i++) {

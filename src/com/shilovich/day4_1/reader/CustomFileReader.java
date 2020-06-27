@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CustomFileReader {
-
     private final static String PATH = "src\\resources\\file.txt";
 
     public String readFile() {

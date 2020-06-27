@@ -3,7 +3,6 @@ package com.shilovich.day4_1.service;
 import com.shilovich.day4_1.entity.CustomArray;
 
 public class CustomArraySearchService {
-
     private static final int FIBONACCI_MAX_ELEMENT_IN_INT = 46;
     private static final int THREE_DIGIT_NUMBER_MIN = 100;
     private static final int THREE_DIGIT_NUMBER_MAX = 999;

@@ -3,7 +3,6 @@ package com.shilovich.day4_1.service;
 import com.shilovich.day4_1.entity.CustomArray;
 
 public class CustomArraySortService {
-
     public CustomArray sortBubble(CustomArray array) {
         int size = array.length();
         for (int i = 0; i < size - 1; i++) {
